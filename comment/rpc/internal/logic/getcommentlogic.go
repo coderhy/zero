@@ -26,5 +26,9 @@ func NewGetCommentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetCom
 func (l *GetCommentLogic) GetComment(in *comment.IdRequest) (*comment.CommentResponse, error) {
 	// todo: add your logic here and delete this line
 
-	return &comment.CommentResponse{}, nil
+	return &comment.CommentResponse{
+		Id:     "1",
+		Name:   "test rpc",
+		Gender: "男",
+	}, nil
 }

@@ -1,0 +1,16 @@
+type (
+	UserReq {
+		Id string `path:"id"`
+	}
+
+	UserReply {
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	}
+)
+service user {
+	@handler getUser
+	get /api/user/get/:id (UserReq) returns (UserReply)
+}
+
+//goctl api go -api user.api -dir .

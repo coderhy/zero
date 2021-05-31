@@ -18,7 +18,7 @@ type (
 	CommentResponse = comment.CommentResponse
 
 	Comment interface {
-		GetUser(ctx context.Context, in *IdRequest) (*CommentResponse, error)
+		GetComment(ctx context.Context, in *IdRequest) (*CommentResponse, error)
 	}
 
 	defaultComment struct {
@@ -32,7 +32,7 @@ func NewComment(cli zrpc.Client) Comment {
 	}
 }
 
-func (m *defaultComment) GetUser(ctx context.Context, in *IdRequest) (*CommentResponse, error) {
+func (m *defaultComment) GetComment(ctx context.Context, in *IdRequest) (*CommentResponse, error) {
 	client := comment.NewCommentClient(m.cli.Conn())
-	return client.GetUser(ctx, in)
+	return client.GetComment(ctx, in)
 }

@@ -16,8 +16,7 @@ syntax = "proto3";
   }
 
   service Comment {
-      rpc getUser(IdRequest) returns(CommentResponse);
+      rpc getComment(IdRequest) returns(CommentResponse);
   }
 
   //goctl rpc proto -src comment.proto -dir . protoc  -I=/Users/heyuan/home/wwwgo/src/zerotest/comment comment.proto --go_out=plugins=grpc:/Users/heyuan/home/wwwgo/src/zerotest/comment/comment
-  

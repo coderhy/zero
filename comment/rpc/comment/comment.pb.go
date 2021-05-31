@@ -153,11 +153,12 @@ var file_comment_proto_rawDesc = []byte{
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06,
 	0x67, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x67, 0x65,
-	0x6e, 0x64, 0x65, 0x72, 0x32, 0x42, 0x0a, 0x07, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x12,
-	0x37, 0x0a, 0x07, 0x67, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x12, 0x12, 0x2e, 0x63, 0x6f, 0x6d,
-	0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18,
-	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x64, 0x65, 0x72, 0x32, 0x45, 0x0a, 0x07, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x12,
+	0x3a, 0x0a, 0x0a, 0x67, 0x65, 0x74, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x12, 0x2e,
+	0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x18, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x43, 0x6f, 0x6d, 0x6d,
+	0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -178,8 +179,8 @@ var file_comment_proto_goTypes = []interface{}{
 	(*CommentResponse)(nil), // 1: comment.CommentResponse
 }
 var file_comment_proto_depIdxs = []int32{
-	0, // 0: comment.Comment.getUser:input_type -> comment.IdRequest
-	1, // 1: comment.Comment.getUser:output_type -> comment.CommentResponse
+	0, // 0: comment.Comment.getComment:input_type -> comment.IdRequest
+	1, // 1: comment.Comment.getComment:output_type -> comment.CommentResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -250,7 +251,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CommentClient interface {
-	GetUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*CommentResponse, error)
+	GetComment(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*CommentResponse, error)
 }
 
 type commentClient struct {
@@ -261,9 +262,9 @@ func NewCommentClient(cc grpc.ClientConnInterface) CommentClient {
 	return &commentClient{cc}
 }
 
-func (c *commentClient) GetUser(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*CommentResponse, error) {
+func (c *commentClient) GetComment(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*CommentResponse, error) {
 	out := new(CommentResponse)
-	err := c.cc.Invoke(ctx, "/comment.Comment/getUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/comment.Comment/getComment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -272,35 +273,35 @@ func (c *commentClient) GetUser(ctx context.Context, in *IdRequest, opts ...grpc
 
 // CommentServer is the server API for Comment service.
 type CommentServer interface {
-	GetUser(context.Context, *IdRequest) (*CommentResponse, error)
+	GetComment(context.Context, *IdRequest) (*CommentResponse, error)
 }
 
 // UnimplementedCommentServer can be embedded to have forward compatible implementations.
 type UnimplementedCommentServer struct {
 }
 
-func (*UnimplementedCommentServer) GetUser(context.Context, *IdRequest) (*CommentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
+func (*UnimplementedCommentServer) GetComment(context.Context, *IdRequest) (*CommentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetComment not implemented")
 }
 
 func RegisterCommentServer(s *grpc.Server, srv CommentServer) {
 	s.RegisterService(&_Comment_serviceDesc, srv)
 }
 
-func _Comment_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Comment_GetComment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CommentServer).GetUser(ctx, in)
+		return srv.(CommentServer).GetComment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/comment.Comment/GetUser",
+		FullMethod: "/comment.Comment/GetComment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CommentServer).GetUser(ctx, req.(*IdRequest))
+		return srv.(CommentServer).GetComment(ctx, req.(*IdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -310,8 +311,8 @@ var _Comment_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*CommentServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "getUser",
-			Handler:    _Comment_GetUser_Handler,
+			MethodName: "getComment",
+			Handler:    _Comment_GetComment_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

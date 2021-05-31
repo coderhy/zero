@@ -21,7 +21,7 @@ func NewCommentServer(svcCtx *svc.ServiceContext) *CommentServer {
 	}
 }
 
-func (s *CommentServer) GetUser(ctx context.Context, in *comment.IdRequest) (*comment.CommentResponse, error) {
-	l := logic.NewGetUserLogic(ctx, s.svcCtx)
-	return l.GetUser(in)
+func (s *CommentServer) GetComment(ctx context.Context, in *comment.IdRequest) (*comment.CommentResponse, error) {
+	l := logic.NewGetCommentLogic(ctx, s.svcCtx)
+	return l.GetComment(in)
 }
